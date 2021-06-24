@@ -19,8 +19,6 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     private Transform _trailPosition;
     [SerializeField]
-    private Animation _animation;
-    [SerializeField]
     private float _moveSpeed=5f;
     private Rigidbody2D _rigidbody2d;
     private Animator _animator;
@@ -28,7 +26,7 @@ public class CharacterController : MonoBehaviour
     private Transform _transform;
     private bool _insideShop;
     private GameManager gameManager;
-    ProductType productType = ProductType.CAP;
+    public ProductType productType = ProductType.CAP;
     private void Awake()
     {
         _rigidbody2d = GetComponent<Rigidbody2D>();
@@ -43,7 +41,6 @@ public class CharacterController : MonoBehaviour
     {
         float moveX = 0f;
         float moveY = 0f;
-        _animator.enabled = true;
         if (Input.GetKey(KeyCode.W)|| Input.GetKey(KeyCode.UpArrow))
         {
             moveY = 1f;
@@ -95,6 +92,7 @@ public class CharacterController : MonoBehaviour
         scale.x = xScale;
         _transform.localScale = scale;
         gameManager.startTrail = false;
+        _animator.enabled = true;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -119,27 +117,37 @@ public class CharacterController : MonoBehaviour
         yield return new WaitForSecondsRealtime(time);
         _animator.enabled = false;
     }
-    public void ChangeDress(List<Sprite> sprites)
+    public void ChangeDress(Sprite sprite,Color color)
     {
+        Debug.Log("i am called:"+ productType);
         if (productType==ProductType.CAP)
         {
-            cap.sprite = sprites[0];
+            cap.sprite = sprite;
+            cap.color = color;
         }
         else if (productType == ProductType.SHIRT)
         {
-            shirt.sprite = sprites[0];
+            shirt.sprite = sprite;
+            shirt.color = color;
         }
         else if (productType == ProductType.PANT)
         {
-            pant.sprite = sprites[0];
+            pant.sprite = sprite;
+            pant.color = color;
         }
         else if (productType == ProductType.SHOES)
         {
-           left_shoe.sprite = sprites[0];
+            left_shoe.sprite = sprite;
+            left_shoe.color = color;
+            var scale = left_shoe.transform.localScale;
+            scale.x =Mathf.Abs( scale.x)* - 1;
+            left_shoe.transform.localScale=scale;
+            right_shoe.sprite = sprite;
+            right_shoe.color = color;
         }
     }
 }
-enum ProductType
+public enum ProductType
 {
     CAP,
     SHIRT,

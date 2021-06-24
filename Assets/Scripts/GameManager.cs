@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 
@@ -25,10 +26,26 @@ public class GameManager : MonoBehaviour
         if (startTrail&& Input.GetMouseButtonDown(0))
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10)), Vector2.zero);
-
-            if (hit.transform != null)
+             string pattern= @"^(shirt|shoe|cap)$";
+            if (hit.transform != null&& Regex.IsMatch(hit.transform.name, pattern))
             {
-                Debug.Log("collider:"+ hit.transform.name);
+
+                string name = hit.transform.name;
+                if (name.Equals("shirt"))
+                {
+                    _characterController.productType = ProductType.SHIRT;
+                }
+                else if (name.Equals("cap"))
+                {
+                    _characterController.productType = ProductType.CAP;
+                }
+                else if (name.Equals("shoe"))
+                {
+                    _characterController.productType = ProductType.SHOES;
+                }
+                Product product = hit.transform.GetComponent<Product>();
+                Color color = hit.transform.GetComponent<SpriteRenderer>().color;
+                _characterController.ChangeDress(product.trailSprite,color);
             }
         }
     }
