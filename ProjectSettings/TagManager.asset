@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - door
   layers:
   - Default
   - TransparentFX
@@ -46,4 +47,7 @@ TagManager:
     locked: 0
   - name: character
     uniqueID: 2106133287
+    locked: 0
+  - name: canvas
+    uniqueID: 2689328103
     locked: 0
