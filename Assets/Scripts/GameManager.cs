@@ -38,7 +38,11 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (startTrail&& Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Exit();
+        }
+        if (Input.GetMouseButtonDown(0))
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10)), Vector2.zero);
              string pattern= @"^(shirt|shoe|cap)$";
@@ -106,6 +110,10 @@ public class GameManager : MonoBehaviour
         {
             TextToSpeech("Welcome to our virtual shop");
         }
+    }
+    public void Exit()
+    {
+        Application.Quit();
     }
     public void TextToSpeech(string text)
     {
