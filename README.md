@@ -1,2 +1,2 @@
 # LSW-Programming-Interview
-<iframe width="560" height="315" src="https://www.youtube.com/embed/9gvzHkg65gw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![LSW-Programming-Interview](https://www.youtube.com/watch?v=9gvzHkg65gw/0.jpg)](https://www.youtube.com/watch?v=9gvzHkg65gw)
