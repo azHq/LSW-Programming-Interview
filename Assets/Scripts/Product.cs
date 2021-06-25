@@ -10,6 +10,7 @@ public class Product : MonoBehaviour
     public ProductType productType = ProductType.CAP;
     public Sprite trailSprite;
     public Sprite showcaseSprite;
+    public Color color;
     void Start()
     {
         

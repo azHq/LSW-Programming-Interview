@@ -792,7 +792,7 @@ AnimationClip:
     script: {fileID: 0}
   - curve:
     - time: 0
-      value: {fileID: 2622741462206141062, guid: b15c9fbe5fa0246aaae6ba56f5838702, type: 3}
+      value: {fileID: 5985239058471163646, guid: b15c9fbe5fa0246aaae6ba56f5838702, type: 3}
     attribute: m_Sprite
     path: left_hand/right_palm
     classID: 212
@@ -827,7 +827,7 @@ AnimationClip:
     script: {fileID: 0}
   - curve:
     - time: 0
-      value: {fileID: -143640507430623617, guid: b15c9fbe5fa0246aaae6ba56f5838702, type: 3}
+      value: {fileID: 2622741462206141062, guid: b15c9fbe5fa0246aaae6ba56f5838702, type: 3}
     attribute: m_Sprite
     path: left_leg
     classID: 212
@@ -1230,12 +1230,12 @@ AnimationClip:
     - {fileID: -7518761654624676281, guid: 347cd5919bf2c49989a989c4c1e4707d, type: 3}
     - {fileID: -2796314236206107100, guid: 347cd5919bf2c49989a989c4c1e4707d, type: 3}
     - {fileID: -4571828015118065507, guid: 347cd5919bf2c49989a989c4c1e4707d, type: 3}
-    - {fileID: 2622741462206141062, guid: b15c9fbe5fa0246aaae6ba56f5838702, type: 3}
+    - {fileID: 5985239058471163646, guid: b15c9fbe5fa0246aaae6ba56f5838702, type: 3}
     - {fileID: -204359854808501785, guid: b15c9fbe5fa0246aaae6ba56f5838702, type: 3}
     - {fileID: -796215784708241363, guid: 7ec17d096300f44c8a76d53758186032, type: 3}
     - {fileID: -796215784708241363, guid: 7ec17d096300f44c8a76d53758186032, type: 3}
     - {fileID: 0}
-    - {fileID: -143640507430623617, guid: b15c9fbe5fa0246aaae6ba56f5838702, type: 3}
+    - {fileID: 2622741462206141062, guid: b15c9fbe5fa0246aaae6ba56f5838702, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

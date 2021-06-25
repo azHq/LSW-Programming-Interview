@@ -14,12 +14,27 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI _popupMessage;
     [SerializeField]
     private GameObject _popup;
+    [SerializeField]
+    private ProductDetails _productDetails;
+    [SerializeField]
+    private Transform _parent;
+    [HideInInspector]
+    public TextToSpeech textToSpeech;
+    [SerializeField]
+    private Texture2D cursor;
     public static GameManager Instance;
     private float _raycastDsitance =Mathf.Infinity;
+    [HideInInspector]
     public bool startTrail;
+    private List<ProductDetails> productDetailsList = new List<ProductDetails>();
+    private Coroutine coroutine;
+    [HideInInspector]
+    public bool askPrice;
     private void Awake()
     {
         Instance = this;
+        textToSpeech = GetComponent<TextToSpeech>();
+        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.ForceSoftware);
     }
     private void Update()
     {
@@ -45,15 +60,31 @@ public class GameManager : MonoBehaviour
                 }
                 Product product = hit.transform.GetComponent<Product>();
                 Color color = hit.transform.GetComponent<SpriteRenderer>().color;
-                _characterController.ChangeDress(product.trailSprite,color);
+                product.color = color;
+                if(!askPrice)_characterController.ChangeDress(product.trailSprite,color);
+                else
+                {
+                    TextToSpeech($"{product.price}$");
+                }
+                ProductDetails productDetails = Instantiate(_productDetails,_parent);
+                productDetails.transform.SetSiblingIndex(0);
+                productDetails.Init(product);
+                productDetailsList.Add(productDetails);
             }
         }
     }
     public void StartTrial()
     {
         startTrail = true;
-        ShowMessage("Please Drag And Drop Your Dress Which One You Want.");
+        askPrice = false;
+        ShowMessage("Please Select Product Which One You Want.");
         _characterController.ReadForTrail();
+    }
+    public void AskPrice()
+    {
+        askPrice = true;
+        TextToSpeech("Please select your product to know price");
+        ShowMessage("Please select your product to know price.");
     }
     public void ShowMessage(string message)
     {
@@ -63,5 +94,22 @@ public class GameManager : MonoBehaviour
     public void SetActionPanelVisibility(bool visibility)
     {
         _actionPanel.SetActive(visibility);
+        if (!visibility)
+        {
+            for (int i=0;i<productDetailsList.Count;i++)
+            {
+                Destroy(productDetailsList[i]);
+            }
+           
+        }
+        else
+        {
+            TextToSpeech("Welcome to our virtual shop");
+        }
+    }
+    public void TextToSpeech(string text)
+    {
+        if (coroutine != null) StopCoroutine(coroutine);
+        coroutine = StartCoroutine(textToSpeech.ProcessText(text));
     }
 }

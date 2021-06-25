@@ -27,6 +27,7 @@ public class CharacterController : MonoBehaviour
     private bool _insideShop;
     private GameManager gameManager;
     public ProductType productType = ProductType.CAP;
+    private Coroutine coroutine;
     private void Awake()
     {
         _rigidbody2d = GetComponent<Rigidbody2D>();
@@ -110,7 +111,8 @@ public class CharacterController : MonoBehaviour
         _animator.SetBool("walk", false);
         _animator.SetBool("back", false);
         _animator.SetBool("forward",true);
-        StartCoroutine(wait(2f));
+        if (coroutine != null) StopCoroutine(coroutine);
+        coroutine=StartCoroutine(wait(2f));
     }
     private IEnumerator wait(float time)
     {
@@ -119,7 +121,7 @@ public class CharacterController : MonoBehaviour
     }
     public void ChangeDress(Sprite sprite,Color color)
     {
-        Debug.Log("i am called:"+ productType);
+       
         if (productType==ProductType.CAP)
         {
             cap.sprite = sprite;
